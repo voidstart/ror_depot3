@@ -23,6 +23,26 @@ class LineItemsControllerTest < ActionController::TestCase
 
     assert_redirected_to cart_path(assigns(:line_item).cart)
   end
+# test duplicate products added to cart
+test "should has same item entries count when add duplicate product" do
+# add one Ruby book
+      post :create, product_id: products(:ruby).id 
+assert_difference('LineItem.count', 0) do
+      post :create, product_id: products(:ruby).id 
+end
+
+end
+# END of test duplicate products added to cart
+# test unique product added to cart 
+test "should increment count when add duplicate product" do
+# add one Ruby book
+      post :create, product_id: products(:one).id 
+assert_difference('LineItem.count', 1) do
+      post :create, product_id: products(:ruby).id 
+end
+
+end
+# END of test unique product added to cart 
 
   test "should show line_item" do
     get :show, id: @line_item
