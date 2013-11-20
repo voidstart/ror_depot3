@@ -48,7 +48,7 @@ product = Product.find(params[:product_id])
       if @line_item.save
 # playtime: reset counter, when anything is added to cart
 session[:counter] = 0
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart  }
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
         format.html { render action: "new" }
