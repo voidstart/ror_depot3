@@ -12,6 +12,7 @@
     <tr>
       <td><%= item.quantity %>&times;</td>
       <td><%= item.product.title %></td>
+<td><%= "(#{item.price} each)" %></td>
       <td class="item_price"><%= number_to_currency(item.total_price) %></td>
     </tr>
 <!-- END_HIGHLIGHT -->
