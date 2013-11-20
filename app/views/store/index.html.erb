@@ -1,6 +1,7 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
+Your viewed this page <%= pluralize(session[:counter],"times") %>
 
 <h1>Your Pragmatic Catalog</h1>
 
