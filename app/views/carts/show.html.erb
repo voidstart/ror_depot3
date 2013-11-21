@@ -3,7 +3,6 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<!-- START_HIGHLIGHT -->
 <h2>Your Cart</h2>
 <table>
 <%= render(@cart.line_items) %>
@@ -12,12 +11,7 @@
     <td colspan="2">Total</td>
     <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
   </tr>
-<!-- END_HIGHLIGHT -->
-<!-- START_HIGHLIGHT -->
 </table>
-<!-- END_HIGHLIGHT -->
 
-<!-- START_HIGHLIGHT -->
 <%= button_to 'Empty cart', @cart, method: :delete,
     data: { confirm: 'Are you sure?' } %>
-<!-- END_HIGHLIGHT -->
