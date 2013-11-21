@@ -82,7 +82,13 @@ session[:counter] = 0
 
     respond_to do |format|
 # After destroy, re-show the cart
-      format.html { redirect_to this_cart }
+      format.html { 
+if this_cart
+	redirect_to this_cart 
+else
+	redirect_to line_items_url 
+end
+}
       format.json { head :no_content }
     end
   end
