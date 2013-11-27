@@ -78,18 +78,10 @@ session[:counter] = 0
   # DELETE /line_items/1.json
   def destroy
     @line_item = LineItem.find(params[:id])
-    this_cart = @line_item.cart
     @line_item.destroy
 
     respond_to do |format|
-# After destroy, re-show the cart
-      format.html { 
-if this_cart
-	redirect_to this_cart 
-else
-	redirect_to line_items_url 
-end
-}
+      format.html { redirect_to store_url }
       format.json { head :no_content }
     end
   end
