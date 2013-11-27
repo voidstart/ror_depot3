@@ -58,6 +58,18 @@ session[:counter] = 0
     end
   end
 
+# POST /line_items/1/decrement
+def decrement
+	@line_item = LineItem.find(params[:id])
+	@line_item.quantity -= 1
+
+	respond_to do |format|
+		if @line_item.save
+			format.html { redirect_to store_url  }
+		end
+	end
+end
+
   # PUT /line_items/1
   # PUT /line_items/1.json
   def update
