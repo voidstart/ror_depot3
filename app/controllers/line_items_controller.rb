@@ -61,11 +61,18 @@ session[:counter] = 0
 # POST /line_items/1/decrement
 def decrement
 	@line_item = LineItem.find(params[:id])
-	@line_item.quantity -= 1
-
-	respond_to do |format|
-		if @line_item.save
+	if  @line_item.quantity == 1
+	    @line_item.destroy
+		respond_to do |format|
 			format.html { redirect_to store_url  }
+		end
+	else
+		@line_item.quantity -= 1
+
+		respond_to do |format|
+			if @line_item.save
+				format.html { redirect_to store_url  }
+			end
 		end
 	end
 end
