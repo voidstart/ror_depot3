@@ -60,30 +60,23 @@ session[:counter] = 0
 
 # POST /line_items/1/decrement
 def decrement
-	@line_item = LineItem.find(params[:id])
-unless @line_item
+	@cart = current_cart
+	@line_item = @cart.line_items.find_by_id(params[:id])
+
+	@line_item = @line_item.decrement_quantity(@line_item.id)
 respond_to do |format|
-format.html { redirect_to store_url, notice: "shit no line_item for decrement" }
-return
-end
+if @line_item.save
+        format.html { redirect_to store_path, notice: 'Line item was successfully updated.' }
+        format.js {@current_item = @line_item}
+        format.json { head :ok }
+else
+        format.html { render action: "edit" }
+        format.js {@current_item = @line_item}
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
 end
 
-	if  @line_item.quantity == 1
-	    @line_item.destroy
-		respond_to do |format|
-			format.html { redirect_to store_url  }
-			format.js { @current_item = @line_item }
-		end
-	else
-		@line_item.quantity -= 1
+end
 
-		respond_to do |format|
-			if @line_item.save
-				format.html { redirect_to store_url  }
-				format.js { @current_item = @line_item }
-			end
-		end
-	end
 end
 
   # PUT /line_items/1
