@@ -75,6 +75,6 @@ end
       delete :destroy, id: @line_item
     end
 
-    assert_redirected_to line_items_path
+    assert_redirected_to store_path 
   end
 end
