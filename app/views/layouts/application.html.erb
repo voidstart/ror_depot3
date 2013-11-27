@@ -18,13 +18,11 @@
   </div>
   <div id="columns">
     <div id="side">
-<div id="cart">
 	<% if @cart %>
 		<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-		<%= render @cart %>
+			<%= render @cart %>
+		<% end %>
 	<% end %>
-<% end %>
-</div>
       <ul>
 <font color="white"><p>Page load time: <%= Time.now %> </p></font>
         <li><a href="http://www....">Home</a></li>
