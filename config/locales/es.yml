@@ -1,0 +1,11 @@
+# just use chinese for testing to fake es
+es:
+#START:layout
+  layouts:
+    application:
+      title:       "Pragmatic书架"
+      home:        "主页"
+      questions:   "问题"
+      news:        "新闻"
+      contact:     "联系"
+#END:layout
